@@ -23,3 +23,5 @@ DATE="02AUG2023"    # HardCoding
 echo "printing the value of a : $a"
 echo "printing the value of a : ${a}"
 
+echo "Printing the value of x : $x"
+
