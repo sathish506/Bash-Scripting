@@ -9,3 +9,6 @@ echo Welcome to Bash Scripting
 # This is how we can execute the script
 #$ bash scriptname.sh     or   sh scriptname.sh    or      ./scriptname.sh 
 
+echo line1
+echo line2
+
