@@ -14,7 +14,7 @@ echo Welcome to Bash Scripting
 
 echo -e "line1\nline2"
 
-echo -e "we\tare\tlearning\tcloud \nThis\tis\tmy\tTarget
+echo -e "we\tare\tlearning\tcloud \nThis\tis\tmy\tTarget"
 
 # Whenever your using special characters always enclose them in double quotes
 
