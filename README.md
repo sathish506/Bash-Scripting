@@ -11,7 +11,7 @@ $ git add .                // This will let Git to know to start tracking all th
 
 $ git commit -m "Updated the Readme file"
 
-& gitpush                // This will push the code to repositary on git hub //
+$ gitpush                // This will push the code to repositary on git hub //
 
 --------
 
