@@ -24,3 +24,4 @@ echo -e "\e[33m I am printing Yellow Colour \e[0m"
 
 echo -e "\e[43;45m I am printing Magneta colour \e[0m"
 
+echo -e "\e[43;34m I am printing both the colors \e[0m"
