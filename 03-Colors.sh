@@ -14,6 +14,6 @@
 # Ex : 
 # echo -e "\e[COLORCODEm  Your Msg To Be Printed In Color \e[0m"
 
-echo -e "\e[35Em I am printing Magneta Colour \e[0m"
-echo -e "\e[31Em I am printing Red Colour \e[0m"
-echo -e "\e[33Em I am printing Yellow Colour \e[0m"
+echo -e "\e[35m I am printing Magneta Colour \e[0m"
+echo -e "\e[31m I am printing Red Colour \e[0m"
+echo -e "\e[33m I am printing Yellow Colour \e[0m"
