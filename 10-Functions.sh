@@ -35,6 +35,6 @@ sleep 2
 
 stat
 
-sleep3
+sleep 3
 
 stat
