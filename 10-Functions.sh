@@ -29,9 +29,11 @@ echo "I am completed"
 stat() {
     echo "Number of sessions opneed are $(who |wc -l)"
     echo "Todays date is $(date +%F)"
+    echo "Avg CPU Utilization in last 5 minutes $(uptime | awk -F : '{print $NF}' | awk -F , '{print $2}')"
     #calling another function
     hai
 }
 stat
+
 
 
