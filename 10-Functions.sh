@@ -21,20 +21,16 @@
 
 #sample
 
+hai() {
+echo "I am hai function"
+echo "I am here to tell you hai"
+echo "I am completed"
+}
 stat() {
     echo "Number of sessions opneed are $(who |wc -l)"
     echo "Todays date is $(date +%F)"
+    #calling another function
 }
 stat
 
-sleep 1
 
-stat
-
-sleep 2
-
-stat
-
-sleep 3
-
-stat
