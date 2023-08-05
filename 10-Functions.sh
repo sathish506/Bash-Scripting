@@ -30,6 +30,7 @@ stat() {
     echo "Number of sessions opneed are $(who |wc -l)"
     echo "Todays date is $(date +%F)"
     #calling another function
+    hai
 }
 stat
 
