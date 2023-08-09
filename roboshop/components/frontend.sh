@@ -9,5 +9,6 @@ if [ $USER_ID -ne 0 ] ; then
 fi
 
 echo "configuring frontend"
-yum install nginx -y
+yum install nginx -y &>> /tmp/frontend.log
+
 
