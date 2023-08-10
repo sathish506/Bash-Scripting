@@ -19,7 +19,7 @@ else
 
 fi
 
-eccho -n "starting nginx :"
+echo -n "starting nginx :"
 systemctl enable nginx
 systemctl start nginx
 
