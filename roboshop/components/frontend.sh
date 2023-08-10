@@ -49,12 +49,12 @@ mv frontend-main/* .
 mv static/* .
 rm -rf frontend-main README.md  &>> /tmp/frontend.log
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
-stat$?
+stat $?
 
 echo -n "Restarting the Frontend"
 systemctl daemone-reload  &>> /tmp/frontend.log
 systemctl restart nginx   &>> /tmp/frontend.log
-stat$?
+stat $?
 
 
 
