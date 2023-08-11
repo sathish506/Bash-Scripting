@@ -28,7 +28,7 @@ fi
 echo -e  "\e[35m configuring ${COMPONENT} .....! \e[0m \n"
 
 echo -n  "configuring ${COMPONENT} repo :"
-curl --silent --location https://rpm.nodesource.com/setup_16.x | sudo bash -
+curl --silent --location https://rpm.nodesource.com/setup_16.x | bash - &>> ${LOGFILE}
 stat $?
 
 echo -n "Installing ${COMPONENT}"
