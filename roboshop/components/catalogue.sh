@@ -15,6 +15,7 @@ if [ $USER_ID -ne 0 ] ; then
 fi
 
 stat() {
+
 if [ $1 -eq 0 ]; then
     echo -e "\e[32m success \e[0m"
 else
@@ -38,6 +39,13 @@ stat $?
 echo -n " creating application user account : "
 useradd roboshop
 stat $?
+
+id ${Appuser}
+if [ $? -ne 0 ];then
+echo -n "creating application user account"
+useradd roboshop
+stat $?
+fi 
 
 
 
