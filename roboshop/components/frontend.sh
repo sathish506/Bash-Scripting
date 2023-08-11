@@ -47,7 +47,7 @@ rm -rf *   &>>  LOGFILE
 stat $?
 
 echo -n "extracting COMPONENT"
-unzip /tmp/COMPONENT.zip  &>> LOGFILE
+unzip /tmp/frontend.zip  &>> LOGFILE
 stat $?
 
 echo -n "sorting the COMPONENT files"
