@@ -26,7 +26,7 @@ fi
 
 
 echo -e  "\e[35m configuring COMPONENT .....! \e[0m \n"
-echo -n "Installing COMPONENT :"
+echo -n "Installing nginx :"
 yum install nginx -y &>> ${LOGFILE}
 stat $?
 
