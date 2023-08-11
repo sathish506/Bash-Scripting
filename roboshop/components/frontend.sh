@@ -25,7 +25,7 @@ fi
 }
 
 
-echo -e  "\e[35m configuring COMPONENT .....! \e[0m \n"
+echo -e  "\e[35m configuring ${COMPONENT} .....! \e[0m \n"
 echo -n "Installing nginx :"
 yum install nginx -y &>> ${LOGFILE}
 stat $?
@@ -37,27 +37,27 @@ systemctl start nginx  &>> ${LOGFILE}
 stat $?
 
 
-echo -n "Downloading the COMPONENT component:"
-curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/COMPONENT/archive/main.zip"
+echo -n "Downloading the ${COMPONENT} component:"
+curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
 stat $?
 
-echo -n "cleanup of COMPONENT"
+echo -n "cleanup of ${COMPONENT}"
 cd /usr/share/nginx/html
 rm -rf *   &>>  ${LOGFILE}
 stat $?
 
-echo -n "extracting COMPONENT"
-unzip /tmp/frontend.zip  &>> ${LOGFILE}
+echo -n "extracting ${COMPONENT}"
+unzip /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
 stat $?
 
-echo -n "sorting the COMPONENT files"
-mv COMPONENT-main/* .
+echo -n "sorting the ${COMPONENT} files"
+mv ${COMPONENT}-main/* .
 mv static/* .
-rm -rf COMPONENT-main README.md  &>> ${LOGFILE}
+rm -rf ${COMPONENT}-main README.md  &>> ${LOGFILE}
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
-echo -n "Restarting the COMPONENT"
+echo -n "Restarting the ${COMPONENT}"
 systemctl daemon-reload  &>> ${LOGFILE}
 systemctl restart nginx   &>> ${LOGFILE}
 stat $?
