@@ -27,13 +27,13 @@ fi
 
 echo -e  "\e[35m configuring COMPONENT .....! \e[0m \n"
 echo -n "Installing COMPONENT :"
-yum install nginx -y &>> LOGFILE
+yum install nginx -y &>> ${LOGFILE}
 stat $?
 
 
 echo -n "starting nginx :"
-systemctl enable nginx &>> LOGFILE
-systemctl start nginx  &>> LOGFILE
+systemctl enable nginx &>> ${LOGFILE}
+systemctl start nginx  &>> ${LOGFILE}
 stat $?
 
 
@@ -43,23 +43,23 @@ stat $?
 
 echo -n "cleanup of COMPONENT"
 cd /usr/share/nginx/html
-rm -rf *   &>>  LOGFILE
+rm -rf *   &>>  ${LOGFILE}
 stat $?
 
 echo -n "extracting COMPONENT"
-unzip /tmp/frontend.zip  &>> LOGFILE
+unzip /tmp/frontend.zip  &>> ${LOGFILE}
 stat $?
 
 echo -n "sorting the COMPONENT files"
 mv COMPONENT-main/* .
 mv static/* .
-rm -rf COMPONENT-main README.md  &>> LOGFILE
+rm -rf COMPONENT-main README.md  &>> ${LOGFILE}
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
 stat $?
 
 echo -n "Restarting the COMPONENT"
-systemctl daemon-reload  &>> LOGFILE
-systemctl restart nginx   &>> LOGFILE
+systemctl daemon-reload  &>> ${LOGFILE}
+systemctl restart nginx   &>> ${LOGFILE}
 stat $?
 
 
