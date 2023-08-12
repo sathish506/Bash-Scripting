@@ -57,4 +57,19 @@ cd /home/roboshop/catalogue
 npm install   &>> ${LOGFILE}
 stat $? 
 
+echo -n "Configuring the ${COMPONENT} system file :"
+sed -ie 's/MONGO_DNSNAME/172.31.11.234/' /home/${Appuser}/${COMPONENT}/systemd.service
+mv /home/${Appuser}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
+stat $?
+
+echo -n "starting the ${COMPONENT} service"
+ systemctl daemon-reload &>> ${LOGFILE}
+ systemctl enable ${COMPONENT}   &>> ${LOGFILE}
+ system ctl restart ${COMPONENT}  &>> ${LOGFILE}
+
+ echo -e "\e[35m ${COMPONENT} Installation Is Completed \e[0m \n"
+
+
+
+
 
