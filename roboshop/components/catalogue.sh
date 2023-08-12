@@ -7,7 +7,6 @@ set -e
 USER_ID=$(id -u)
 COMPONENT=catalogue
 LOGFILE=/tmp/COMPONENT.log
-Appuser="roboshop"
 
 if [ $USER_ID -ne 0 ] ; then    
     echo -e "\e[31m Script is expected to executed by the root user or with a sudo privilege \e[0m \n \t Example: \n\t\t sudo bash wrapper.sh frontend"
@@ -34,40 +33,4 @@ stat $?
 echo -n "Installing ${COMPONENT}"
 yum install nodejs -y  &>> ${LOGFILE}
 stat $?
-
-id ${Appuser}  &>> ${LOGFILE}
-if [ $? -ne 0 ];then
-echo -n "creating application user account"
-useradd roboshop
-stat $?
-fi 
-
-echo -n "Downloading the ${COMPONENT} :"
-curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
-stat $?
-
-echo -n "copying the ${COMPONENT} to ${Appuser} home directory"
-cd /home/${Appuer}/
-rm -rf ${COMPONENT}   &>> ${LOGFILE}
-unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
-stat $?
-
-echo -n "changing the ownership :"
-mv ${COMPONENT}-main ${COMPONENT}
-chown -R ${Appuser}: ${Appuser}  /home/${Appuser}/${Appuser}/
-stat $?
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
