@@ -58,8 +58,8 @@ npm install   &>> ${LOGFILE}
 stat $? 
 
 echo -n "Configuring the ${COMPONENT} system file :"
-sed -i -e 's/REDIS_ENDPOINT/172.31.5.160/' /home/${Appuser}/${COMPONENT}/systemd.servicee
-mv /home/${Appuser}/${COMPONENT}/systemd.servicee /etc/systemd/system/${COMPONENT}.service
+sed -i -e 's/REDIS_ENDPOINT/172.31.5.160/' /home/${Appuser}/${COMPONENT}/systemd.service
+mv /home/${Appuser}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
 stat $?
 
 echo -n "starting the ${COMPONENT} service"
