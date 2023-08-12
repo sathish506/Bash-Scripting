@@ -38,12 +38,12 @@ sed  -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}.conf
 sed  -ie 's/127.0.0.1/0.0.0.0/g' /etc/${COMPONENT}/${COMPONENT}.conf
 stat $?
 
-echo -n "Starting the ${COMPONENT} :"
-systemctl daemon-reload              &>> ${LOGFILE} 
-systemctl enable ${COMPONENT}        &>> ${LOGFILE} 
-systemctl start ${COMPONENT}         &>> ${LOGFILE} 
-stat $?
 
+echo -n "Starting the ${COMPONENT}  :"
+systemctl daemon-reload          &>> ${LOGFILE} 
+systemctl enable ${COMPONENT}    &>> ${LOGFILE} 
+systemctl restart ${COMPONENT}   &>> ${LOGFILE} 
+stat $?
 
 echo -e "\e[35m ${COMPONENT} Installation Is Completed \e[0m \n"
 
