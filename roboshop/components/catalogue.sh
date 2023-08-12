@@ -25,7 +25,6 @@ else
 fi 
 }
 
-
 echo -e  "\e[35m configuring ${COMPONENT} .....! \e[0m \n"
 
 echo -n  "configuring ${COMPONENT} repo :"
@@ -51,6 +50,11 @@ echo -n "copying the ${COMPONENT} to ${Appuser} home directory"
 cd /home/${Appuer}/
 rm -rf ${COMPONENT}   &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
+stat $?
+
+echo -n "changing the ownership :"
+mv ${COMPONENT}-main ${COMPONENT}
+chwon -R ${Appuser}: ${Appuser}  /home/${Appuser}/${Appuser}/
 stat $?
 
 
