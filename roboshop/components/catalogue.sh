@@ -36,6 +36,23 @@ echo -n "Installing ${COMPONENT}"
 yum install nodejs -y  &>> ${LOGFILE}
 stat $?
 
+id ${Appuser}  &>> ${LOGFILE}
+if [ $? -ne 0 ];then
+echo -n "creating application user account"
+useradd roboshop
+stat $?
+fi 
+
+echo -n "Downloading the ${COMPONENT} :"
+curl -s -L -o /tmp/catalogue.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
+stat $?
+
+
+echo -n "copying the ${COMPONENT} to ${Appuser} home directory"
+cd /home/${Appuer}/
+rm -rf ${COMPONENT}   &>> ${LOGFILE}
+unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
+stat $?
 
 
 
