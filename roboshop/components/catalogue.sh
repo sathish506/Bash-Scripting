@@ -38,7 +38,7 @@ stat $?
 id ${Appuser}  &>> ${LOGFILE}
 if [ $? -ne 0 ];then
 echo -n "creating application user account"
-useradd ${Appuser} 
+useradd roboshop 
 stat $?
 fi 
 
