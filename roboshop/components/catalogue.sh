@@ -54,7 +54,7 @@ stat $?
 
 echo -n "Generating the ${COMPONENT} artifacts:"
 cd /home/roboshop/catalogue
-npm install
-stat $?
+npm install   &>> ${LOGFILE}
+stat $? 
 
 
