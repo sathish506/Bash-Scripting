@@ -53,7 +53,7 @@ unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
 stat $?
 
 echo -n "Generating the ${COMPONENT} artifacts:"
-ccd /home/roboshop/user
+cd /home/roboshop/user
 npm install   &>> ${LOGFILE}
 stat $? 
 
