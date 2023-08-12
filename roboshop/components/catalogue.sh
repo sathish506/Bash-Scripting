@@ -52,3 +52,8 @@ rm -rf ${COMPONENT}   &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
 stat $?
 
+echo -n "changing the ownership :"
+mv ${COMPONENT}-main ${COMPONENT}
+chown -R ${Appuser}: ${Appuser}  /home/${Appuser}/${Appuser}/
+stat $?
+
