@@ -52,8 +52,10 @@ rm -rf ${COMPONENT}   &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
 stat $?
 
-
-
+echo -n "Generating the ${COMPONENT} artifacts:"
+cd /home/roboshop/user
+npm install   &>> ${LOGFILE}
+stat $?
 
 
 
