@@ -47,13 +47,17 @@ curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${CO
 stat $?
 
 echo -n "copying the ${COMPONENT} to ${Appuser} home directory"
-cd /home/${Appuer}/
+cd /home/${Appuser}/
 rm -rf ${COMPONENT}   &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
 stat $?
 
+echo -n "Changing the ownership"
+mv ${COMPONENT}-main ${COMPONNENT}
+chown -R ${Appuser}:${Appuser} /home/${Appuser}/${COMPONENT}/
+
 echo -n "Generating the ${COMPONENT} artifacts:"
-cd /home/roboshop/catalogue
+cd /home/${Appuser}/${COMPONENT}
 npm install   &>> ${LOGFILE}
 stat $? 
 
