@@ -52,10 +52,6 @@ rm -rf ${COMPONENT}   &>> ${LOGFILE}
 unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
 stat $?
 
-echo -n "Changing the ownership"
-mv ${COMPONENT}-main ${COMPONNENT}
-chown -R ${Appuser}:${Appuser} /home/${Appuser}/${COMPONENT}/
-
 echo -n "Generating the ${COMPONENT} artifacts:"
 cd /home/${Appuser}/${COMPONENT}/
 npm install   &>> ${LOGFILE}
