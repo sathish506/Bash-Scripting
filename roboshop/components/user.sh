@@ -42,32 +42,7 @@ useradd roboshop
 stat $?
 fi 
 
-echo -n "Downloading the ${COMPONENT} :"
-curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
-stat $?
 
-echo -n "copying the ${COMPONENT} to ${Appuser} home directory"
-cd /home/${Appuer}/
-rm -rf ${COMPONENT}   &>> ${LOGFILE}
-unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
-stat $?
-
-echo -n "Generating the ${COMPONENT} artifacts:"
-cd /home/roboshop/user
-npm install   &>> ${LOGFILE}
-stat $? 
-
-echo -n "Configuring the ${COMPONENT} system file :"
-sed -i -e 's/REDIS_ENDPOINT/172.31.5.160/' /home/${Appuser}/${COMPONENT}/systemd.service
-mv /home/${Appuser}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
-stat $?
-
-echo -n "starting the ${COMPONENT} service"
- systemctl daemon-reload &>> ${LOGFILE}
- systemctl enable ${COMPONENT}   &>> ${LOGFILE}
- systemctl restart ${COMPONENT}  &>> ${LOGFILE}
-
- echo -e "\e[35m ${COMPONENT} Installation Is Completed \e[0m \n"
 
 
 
