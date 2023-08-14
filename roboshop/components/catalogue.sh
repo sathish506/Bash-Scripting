@@ -7,7 +7,8 @@ set -e
 USER_ID=$(id -u)
 COMPONENT=catalogue
 LOGFILE=/tmp/COMPONENT.log
-Appuser="roboshop"
+APPUSER="roboshop"
+
 
 if [ $USER_ID -ne 0 ] ; then    
     echo -e "\e[31m Script is expected to executed by the root user or with a sudo privilege \e[0m \n \t Example: \n\t\t sudo bash wrapper.sh frontend"
@@ -35,45 +36,7 @@ echo -n "Installing ${COMPONENT}"
 yum install nodejs -y  &>> ${LOGFILE}
 stat $?
 
-id ${Appuser}  &>> ${LOGFILE}
-if [ $? -ne 0 ];then
 echo -n "creating application user account :"
-useradd roboshop 
+useradd roboshop
 stat $?
-fi 
-
-echo -n "Downloading the ${COMPONENT} :"
-curl -s -L -o /tmp/${COMPONENT}.zip "https://github.com/stans-robot-project/${COMPONENT}/archive/main.zip"
-stat $?
-
-echo -n "copying the ${COMPONENT} to ${Appuser} home directory"
-cd /home/${Appuser}/
-rm -rf ${COMPONENT}   &>> ${LOGFILE}
-unzip -o /tmp/${COMPONENT}.zip  &>> ${LOGFILE}
-stat $?
-
-echo -n "Changing the ownership"
-mv ${COMPONENT}-main ${COMPONNENT}
-chown -R ${Appuser}:${Appuser} /home/${Appuser}/${COMPONENT}/
-
-echo -n "Generating the ${COMPONENT} artifacts:"
-cd /home/${Appuser}/${COMPONENT}
-npm install   &>> ${LOGFILE}
-stat $? 
-
-echo -n "Configuring the ${COMPONENT} system file :"
-sed -ie 's/MONGO_DNSNAME/172.31.11.234/' /home/${Appuser}/${COMPONENT}/systemd.servicee
-mv /home/${Appuser}/${COMPONENT}/systemd.servicee /etc/systemd/system/${COMPONENT}.service
-stat $?
-
-echo -n "starting the ${COMPONENT} service"
- systemctl daemon-reload &>> ${LOGFILE}
- systemctl enable ${COMPONENT}   &>> ${LOGFILE}
- systemctl restart ${COMPONENT}  &>> ${LOGFILE}
-
- echo -e "\e[35m ${COMPONENT} Installation Is Completed \e[0m \n"
-
-
-
-
 
