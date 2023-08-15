@@ -9,7 +9,6 @@ COMPONENT=cart
 LOGFILE=/tmp/COMPONENT.log
 APPUSER="roboshop"
 
-
 if [ $USER_ID -ne 0 ] ; then    
     echo -e "\e[31m Script is expected to executed by the root user or with a sudo privilege \e[0m \n \t Example: \n\t\t sudo bash wrapper.sh frontend"
     exit 1
@@ -32,7 +31,7 @@ echo -n  "configuring ${COMPONENT} repo :"
 curl --silent --location https://rpm.nodesource.com/setup_16.x | bash - &>> ${LOGFILE}
 stat $?
 
-echo -n "Installing ${COMPONENT}"
+echo -n "Installing nodejs:"
 yum install nodejs -y  &>> ${LOGFILE}
 stat $?
 
