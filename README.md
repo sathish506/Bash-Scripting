@@ -101,3 +101,12 @@ fi  -->
 # That's the default behavior of BASH.
 # If you don't want the script to proceeding further in case of any failure, you can use "set -e" in the beginning of the script.
 
+
+
+a)  For nodejs components, let's create a function for nodejs and declare all the action in this and call it when you're using any nodejS   components.
+
+b)  For python components, let's create a function for python and declare all the action in this and call it when you're using any python   components.
+
+c)  For java components, let's create a function for java and declare all the action in this and call it when you're using any java components.
+
+d)  For angularjs components, let's create a function for angularjs and declare all the action in this and call it when you're using any angularjs components.
