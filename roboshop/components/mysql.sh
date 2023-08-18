@@ -12,7 +12,7 @@ stat $?
 
 echo -n "Installing ${COMPONENT} :"
 yum install mysql-community-server -y   &>> ${LOGFILE}
-stat $
+stat $?
 
 echo -n "starting ${COMPONENT} :"
 systemctl enable ${COMPONENT} &>> ${LOGFILE}
