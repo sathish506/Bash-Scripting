@@ -51,7 +51,7 @@ DOWNLOAD_AND_EXTRACT() {
 CONFIG_SVC() {
 
   echo -n "Configuring the ${COMPONENT} system file :"
-  sed -ie 's/MONGO_DNSNAME/172.31.11.234/' /home/${APPUSER}/${COMPONENT}/systemd.service
+  sed -i -e 's/USERHOST/172.31.5.160/'  -e 's/CARTHOST/172.31.83.208/'  -e 's/CARTENDPOINT/172.31.83.208/' -e 's/DBHOST/172.31.91.117/' -e 's/REDIS_ENDPOINT/172.31.7.11/'  -e 's/CATALOGUE_ENDPOINT/172.31.6.132/' -e 's/MONGO_DNSNAME/172.31.11.234/' -e 's/REDIS_ENDPOINT/172.31.7.11/'  -e 's/MONGO_ENDPOINT/172.31.11.234/' /home/${APPUSER}/${COMPONENT}/systemd.service
   mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
   stat $?
 
@@ -83,7 +83,34 @@ cd /home/${APPUSER}/${COMPONENT}
 npm install   &>> ${LOGFILE}
 stat $?
 
+CONFIG_SVC
+
 }
 
 
+
+MVN_PACKAGE() {
+        echo -n "Generating the ${COMPONENT} artifacts :"
+        cd /home/${APPUSER}/${COMPONENT}/
+        mvn clean package   &>> ${LOGFILE}
+        mv target/${COMPONENT}-1.0.jar ${COMPONENT}.jar
+        stat $?
+}
+
+JAVA() {
+        echo -e "\e[35m Configuring ${COMPONENT} ......! \e[0m \n"
+
+        echo -n "Installing maven:"
+        yum install maven -y    &>> ${LOGFILE}
+        stat $? 
+
+        CREATE_USER              # calls CREATE_USER function that creates user account.
+
+        DOWNLOAD_AND_EXTRACT     # Downloads and extracts the components
+
+        MVN_PACKAGE
+
+        CONFIG_SVC
+
+}
 
