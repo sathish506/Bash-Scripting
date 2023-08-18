@@ -2,8 +2,8 @@
 
 
 COMPONENT=mysql
-source components/common.sh
 
+source components/common.sh
 echo -e  "\e[35m configuring ${COMPONENT} .....! \e[0m \n"
 
 echo -n "Cofiguring the ${COMPONENT} repo :"
