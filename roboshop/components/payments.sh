@@ -1,3 +1,6 @@
 #!/bin/bash
 
-echo "I am payments"
+COMPONENT=payment
+
+# This is how we import the functions that are declared in a different file using source 
+source components/common.sh
