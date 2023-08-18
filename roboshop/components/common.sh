@@ -51,7 +51,7 @@ DOWNLOAD_AND_EXTRACT() {
 CONFIG_SVC() {
 
   echo -n "Configuring the ${COMPONENT} system file :"
-  sed -i -e 's/USERHOST/172.31.5.160/'  -e 's/CARTHOST/172.31.83.208/'  -e 's/CARTENDPOINT/172.31.83.208/' -e 's/DBHOST/172.31.91.117/' -e 's/REDIS_ENDPOINT/172.31.7.11/'  -e 's/CATALOGUE_ENDPOINT/172.31.6.132/' -e 's/MONGO_DNSNAME/172.31.11.234/' -e 's/REDIS_ENDPOINT/172.31.7.11/'  -e 's/MONGO_ENDPOINT/172.31.11.234/' /home/${APPUSER}/${COMPONENT}/systemd.service
+  sed -i -e 's/AMQPHOST/172.31.84.105/' -e 's/USERHOST/172.31.5.160/'  -e 's/CARTHOST/172.31.83.208/'  -e 's/CARTENDPOINT/172.31.83.208/' -e 's/DBHOST/172.31.91.117/' -e 's/REDIS_ENDPOINT/172.31.7.11/'  -e 's/CATALOGUE_ENDPOINT/172.31.6.132/' -e 's/MONGO_DNSNAME/172.31.11.234/' -e 's/REDIS_ENDPOINT/172.31.7.11/'  -e 's/MONGO_ENDPOINT/172.31.11.234/' /home/${APPUSER}/${COMPONENT}/systemd.service
   mv /home/${APPUSER}/${COMPONENT}/systemd.service /etc/systemd/system/${COMPONENT}.service
   stat $?
 
