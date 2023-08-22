@@ -17,7 +17,7 @@ fi
 AMI_ID="ami-0c1d144c8fdd8d690"
 INSTANCE_TYPE="t3.micro"
 SG_ID="sg-052c68247aae56a95"         #B55-ALLOW ALL security group id
-PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" |jq '.Instances[].PrivateIpAddress')
+PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" |jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
 echo "private ip address of the $COMPONENT is $PRIVATEIP"
 
 
