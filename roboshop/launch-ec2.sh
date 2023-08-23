@@ -8,7 +8,7 @@
 # DNS record,Hosted Zone ID
 
 COMPONENT=$1
-Hosted zone Id=Z099864834GFMARSYGETM
+HOSTEDZONEID=Z099864834GFMARSYGETM
 INSTANCE_TYPE="t3.micro"
 
 if [ -z $1 ] ; then
