@@ -8,6 +8,7 @@
 # DNS record,Hosted Zone ID
 
 COMPONENT=$1
+ENV=$2
 HOSTEDZONEID=Z099864834GFMARSYGETM
 INSTANCE_TYPE="t3.micro"
 
@@ -26,8 +27,8 @@ SG_ID="$(aws ec2 describe-security-groups  --filters Name=group-name,Values=b55-
 
 create_ec2() {
 
-echo -e "****** Creating \e[35m ${COMPONENT} \e[0m Server Is In Progress ************** "
-PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}}]" |jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
+echo -e "****** Creating \e[35m ${COMPONENT}-${ENV} \e[0m Server Is In Progress ************** "
+PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}-${ENV}}]" |jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
 echo "private ip address of the $COMPONENT is $PRIVATEIP"
 echo -e "Creating DNS Record of ${COMPONENT}: "
 sed -e "s/COMPONENT/${COMPONENT}-${ENV}/"  -e "s/IPADDRESS/${PRIVATEIP}/" route53.json  > /tmp/r53.json 
