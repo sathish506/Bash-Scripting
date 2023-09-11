@@ -23,7 +23,7 @@ fi
 
 
 AMI_ID="$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7"| jq ".Images[].ImageId" | sed -e 's/"//g')" 
-SG_ID="$(aws ec2 describe-security-groups  --filters Name=group-name,Values=B55_ALLOW_ALL_SECURITY_GROUP | jq '.SecurityGroups[].GroupId' | sed -e 's/"//g')"       # b55-allow-all security group id
+SG_ID="$(aws ec2 describe-security-groups  --filters Name=group-name,Values=B55_ALLOW_ALL | jq '.SecurityGroups[].GroupId' | sed -e 's/"//g')"       # b55-allow-all security group id
 
 create_ec2() {
 
