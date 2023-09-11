@@ -27,9 +27,10 @@ SG_ID="$(aws ec2 describe-security-groups  --filters Name=group-name,Values=B55_
 
 create_ec2() {
 
-echo -e "****** Creating \e[35m ${COMPONENT}-${ENV} \e[0m Server Is In Progress ************** "
+echo -e "****** Creating \e[35m ${COMPONENT} \e[0m Server Is In Progress ************** "
 PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}-${ENV}}]" |jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
-echo "private ip address of the $COMPONENT-${ENV} is $PRIVATEIP \n\n"
+
+echo -e "private ip address of the $COMPONENT-${ENV} is $PRIVATEIP \n\n"
 echo -e "Creating DNS Record of ${COMPONENT}: "
 sed -e "s/COMPONENT/${COMPONENT}-${ENV}/"  -e "s/IPADDRESS/${PRIVATEIP}/" route53.json  > /tmp/r53.json 
 aws route53 change-resource-record-sets --hosted-zone-id $HOSTEDZONEID --change-batch file:///tmp/r53.json
