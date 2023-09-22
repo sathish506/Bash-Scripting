@@ -21,13 +21,12 @@ fi
 # AMI_ID="ami-0c1d144c8fdd8d690"
 # SG_ID="sg-052c68247aae56a95"         #B55-ALLOW ALL security group id
 
-
 AMI_ID="$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7"| jq ".Images[].ImageId" | sed -e 's/"//g')" 
 SG_ID="$(aws ec2 describe-security-groups  --filters Name=group-name,Values=B55_ALLOW_ALL_SECURITY_GROUP | jq '.SecurityGroups[].GroupId' | sed -e 's/"//g')"       # b55-allow-all security group id
 
 create_ec2() {
 
-echo -e "****** Creating \e[35m ${COMPONENT} \e[0m Server Is In Progress ************** "
+echo -e " ****** Creating \e[35m ${COMPONENT} \e[0m Server Is In Progress ************** "
 PRIVATEIP=$(aws ec2 run-instances --image-id ${AMI_ID} --instance-type ${INSTANCE_TYPE} --security-group-ids ${SG_ID} --tag-specifications "ResourceType=instance,Tags=[{Key=Name,Value=${COMPONENT}-${ENV}}]" |jq '.Instances[].PrivateIpAddress' | sed -e 's/"//g')
 
 echo -e "private ip address of the $COMPONENT-${ENV} is $PRIVATEIP \n\n"
